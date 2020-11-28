@@ -34,12 +34,16 @@ function finishCreate() {
       : category.innerText === "Футболка"
       ? "SHIRT"
       : "HOODIE";
+  const tagss = [];
+  if (sale.cheked) tagss.push("SALE");
+  if (hot.cheked) tagss.push("HOT");
   const data = {
     name: blogHeader.value,
     description: blogBody.value,
     price: blogPrice.value,
     category: type,
-    sizes: "M",
+    sizes: ["S", "M"],
+    tags: tagss,
   };
 
   sendToServer(data);
