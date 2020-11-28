@@ -59,5 +59,15 @@ a:hover{
 }
 
 .page-item .page-link{
+    border: none;
     border-radius: 50px;
+}
+
+.page-link:hover{
+    background-color: white;
+    cursor: pointer;
+}
+
+.search{
+    width: 90%;
 }
