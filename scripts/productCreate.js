@@ -38,7 +38,7 @@ function finishCreate() {
     name: blogHeader.value,
     description: blogBody.value,
     price: blogPrice.value,
-    sizes: type,
+    sizes: "M",
   };
 
   sendToServer(data);
