@@ -78,6 +78,7 @@ async function signinConnect(user) {
 
     if (user.username === "admin" && user.password === "123456") {
       window.location.href = "admin.html";
+      return;
     }
     window.location.href = "../index.html";
   } else {
