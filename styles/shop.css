@@ -71,3 +71,15 @@ a:hover{
 .search{
     width: 90%;
 }
+
+/*
+    Items
+*/
+
+.shop .item{
+    display: none;
+}
+
+.shop .item.show{
+    display: block!important;
+}
