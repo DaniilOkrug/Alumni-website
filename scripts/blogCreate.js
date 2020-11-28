@@ -13,7 +13,8 @@ async function signConnect() {
     method: "GET",
   });
   result = await response.json();
-  if (!result.ok) {
+  if (result.ok) {
+  }else{
     loggedOff();
   }
 }
