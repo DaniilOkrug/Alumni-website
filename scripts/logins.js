@@ -1,9 +1,12 @@
+let result;
 async function signConnect() {
   let response = await fetch("http://plony.hopto.org:70/authorize", {
-    headers: { "Authorization": "Bearer " + document.cookie.replace("token=", "") },
+    headers: {
+      Authorization: "Bearer " + document.cookie.replace("token=", ""),
+    },
     method: "GET",
   });
-  let result = await response.json();
+  result = await response.json();
   if (result.ok) {
     loggedIn();
   } else {
