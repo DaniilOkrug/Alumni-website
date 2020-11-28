@@ -32,12 +32,13 @@ function finishCreate() {
     category.innerText === "Кепка"
       ? "CAP"
       : category.innerText === "Футболка"
-      ? "T-SHIRT"
+      ? "SHIRT"
       : "HOODIE";
   const data = {
     name: blogHeader.value,
     description: blogBody.value,
     price: blogPrice.value,
+    category: type,
     sizes: "M",
   };
 
