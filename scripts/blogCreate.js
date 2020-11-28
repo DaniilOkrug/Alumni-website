@@ -1,10 +1,3 @@
-/*
-/posts -> будет возвращать еще и id в себе
-/posts/{id} -> определенный пост
-/items -> возвращает список вещей
-/items/{id} -> определенная вещь
-/authorize -> вернет { ok: true, message: <username> } если ты авторизован
-*/
 async function signConnect() {
   let response = await fetch("http://plony.hopto.org:70/authorize", {
     headers: {
@@ -14,7 +7,7 @@ async function signConnect() {
   });
   result = await response.json();
   if (result.ok) {
-  }else{
+  } else {
     loggedOff();
   }
 }
