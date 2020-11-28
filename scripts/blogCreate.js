@@ -5,9 +5,22 @@
 /items/{id} -> определенная вещь
 /authorize -> вернет { ok: true, message: <username> } если ты авторизован
 */
-if (!result.ok) {
-  document.body.innerHTML = `Войдите перед использованием`;
-} else {
+async function signConnect() {
+  let response = await fetch("http://plony.hopto.org:70/authorize", {
+    headers: {
+      Authorization: "Bearer " + document.cookie.replace("token=", ""),
+    },
+    method: "GET",
+  });
+  result = await response.json();
+  if (!result.ok) {
+    loggedOff();
+  }
+}
+signConnect();
+function loggedOff() {
+  const emptyDiv = document.getElementById("ALL");
+  emptyDiv.innerHTML = "";
 }
 
 const blogHeader = document.getElementById("blogHeader");
@@ -26,7 +39,7 @@ function finishCreate() {
   sendToServer(data);
 }
 async function sendToServer(dataToSend) {
-  let response = await fetch("http://plony.hopto.org:70/posts", {
+  let response = await fetch("http://plony.hopto.org:70/authorize/login", {
     headers: {
       Authorization: "Bearer " + document.cookie.replace("token=", ""),
       Accept: "application/json",
