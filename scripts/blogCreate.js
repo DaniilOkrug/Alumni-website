@@ -45,7 +45,7 @@ async function sendToServer(dataToSend) {
       Accept: "application/json",
     },
   });
-  dataToSend.primaryImage = await response.text();
+  dataToSend.previewImage = await response.text();
   let response = await fetch("http://plony.hopto.org:70/posts", {
     headers: {
       Authorization: "Bearer " + document.cookie.replace("token=", ""),
