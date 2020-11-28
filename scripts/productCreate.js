@@ -69,7 +69,7 @@ async function sendToServer(dataToSend) {
 
   formData.append("file", blogPreview2.files[0]);
 
-  let response = await fetch("http://plony.hopto.org:70/images", {
+  response = await fetch("http://plony.hopto.org:70/images", {
     method: "POST",
     body: formData2,
     headers: {
@@ -78,7 +78,7 @@ async function sendToServer(dataToSend) {
     },
   });
   dataToSend.secondaryImage = await response.text();
-  let response = await fetch("http://plony.hopto.org:70/items", {
+  response = await fetch("http://plony.hopto.org:70/items", {
     headers: {
       Authorization: "Bearer " + document.cookie.replace("token=", ""),
       Accept: "application/json",
