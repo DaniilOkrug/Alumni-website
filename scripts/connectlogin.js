@@ -11,9 +11,6 @@ signinButton.addEventListener("click", signin);
 function signin() {
   const username = signinUsername.value;
   const password = signinPassword.value;
-  if (username === "admin" && password === "123456") {
-    window.location.href = "admin.html";
-  }
   const user = {
     username: username.toLowerCase(),
     password: password,
@@ -78,6 +75,10 @@ async function signinConnect(user) {
   console.log(result);
   if (result.ok) {
     document.cookie = "token=" + result.message + "; path=/";
+
+    if (user.username === "admin" && user.password === "123456") {
+      window.location.href = "admin.html";
+    }
     window.location.href = "../index.html";
   } else {
     alert("Неверный логин или пароль");
