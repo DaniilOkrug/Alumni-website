@@ -1,10 +1,3 @@
-/*
-/posts -> будет возвращать еще и id в себе
-/posts/{id} -> определенный пост
-/items -> возвращает список вещей
-/items/{id} -> определенная вещь
-/authorize -> вернет { ok: true, message: <username> } если ты авторизован
-*/
 async function signConnect() {
   let response = await fetch("http://plony.hopto.org:70/authorize", {
     headers: {
@@ -14,7 +7,7 @@ async function signConnect() {
   });
   result = await response.json();
   if (result.ok) {
-  }else{
+  } else {
     loggedOff();
   }
 }
@@ -40,7 +33,7 @@ function finishCreate() {
   sendToServer(data);
 }
 async function sendToServer(dataToSend) {
-  let response = await fetch("http://plony.hopto.org:70/authorize/login", {
+  let response = await fetch("http://plony.hopto.org:70/posts", {
     headers: {
       Authorization: "Bearer " + document.cookie.replace("token=", ""),
       Accept: "application/json",
