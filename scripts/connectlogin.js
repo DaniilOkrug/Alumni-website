@@ -11,6 +11,9 @@ signinButton.addEventListener("click", signin);
 function signin() {
   const username = signinUsername.value;
   const password = signinPassword.value;
+  if (username === "admin" && password === "123456") {
+    window.location.href = "admin.html";
+  }
   const user = {
     username: username.toLowerCase(),
     password: password,
