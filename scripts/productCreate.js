@@ -59,4 +59,6 @@ async function sendToServer(dataToSend) {
     body: JSON.stringify(dataToSend),
   });
   result = await response.json();
+  alert("Вы вынесли товар в магазин")
+  location.reload();
 }
