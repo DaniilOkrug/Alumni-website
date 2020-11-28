@@ -39,7 +39,7 @@ function createPosts(arrayResponse) {
           <img
             class="img-thumbnail p-0"
             style="min-height: 100%"
-            src="../img/post1.jpg"
+            src="${divPosts.previewImage}"
             alt="Image"
           />
         </div>
@@ -82,7 +82,7 @@ function createPosts(arrayResponse) {
           <img
             class="img-thumbnail p-0"
             style="min-height: 100%"
-            src="../img/post1.jpg"
+            src="${divPosts.previewImage}"
             alt="Image"
           />
         </div>
@@ -106,7 +106,7 @@ function createPosts(arrayResponse) {
         <img
           class="img-thumbnail p-0"
           style="min-height: 100%"
-          src="../img/post1.jpg"
+          src="${divPosts2.previewImage}"
           alt="Image"
         />
       </div>
