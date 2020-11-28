@@ -19,7 +19,7 @@ function loggedOff() {
 
 const blogHeader = document.getElementById("blogHeader");
 const blogBody = document.getElementById("blogBody");
-const blogPreview = document.getElementById("blogPreview");
+const blogPreview = document.getElementById("productPreview1");
 const blogPrice = document.getElementById("blogPrice");
 const buttonPreview = document.getElementById("upload");
 const buttonFinish = document.getElementById("finish");
@@ -48,7 +48,22 @@ function finishCreate() {
 
   sendToServer(data);
 }
+
 async function sendToServer(dataToSend) {
+  const formData = new FormData();
+
+  formData.append("file", blogPreview.files[0]);
+
+  let response = await fetch("http://plony.hopto.org:70/items", {
+    method: "POST",
+    body: formData,
+    headers: {
+      Authorization: "Bearer " + document.cookie.replace("token=", ""),
+      Accept: "application/json",
+    },
+  });
+  result = await response.json();
+
   let response = await fetch("http://plony.hopto.org:70/items", {
     headers: {
       Authorization: "Bearer " + document.cookie.replace("token=", ""),
@@ -59,6 +74,6 @@ async function sendToServer(dataToSend) {
     body: JSON.stringify(dataToSend),
   });
   result = await response.json();
-  alert("Вы вынесли товар в магазин")
+  alert("Вы вынесли товар в магазин");
   location.reload();
 }
