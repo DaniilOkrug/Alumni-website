@@ -56,4 +56,6 @@ async function sendToServer(dataToSend) {
     body: JSON.stringify(dataToSend),
   });
   result = await response.json();
+  alert("Вы успешно создали пост");
+  location.reload();
 }
