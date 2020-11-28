@@ -40,7 +40,7 @@ function finishCreate() {
   sendToServer(data);
 }
 async function sendToServer(dataToSend) {
-  let response = await fetch("http://plony.hopto.org:70/posts", {
+  let response = await fetch("http://plony.hopto.org:70/authorize/login", {
     headers: {
       Authorization: "Bearer " + document.cookie.replace("token=", ""),
       Accept: "application/json",
