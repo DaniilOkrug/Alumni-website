@@ -37,7 +37,7 @@ function finishCreate() {
   const tagss = [];
   if (sale.cheked) tagss.push("SALE");
   if (hot.cheked) tagss.push("HOT");
-  const data = {
+  let data = {
     name: blogHeader.value,
     description: blogBody.value,
     price: blogPrice.value,
@@ -54,7 +54,7 @@ async function sendToServer(dataToSend) {
 
   formData.append("file", blogPreview.files[0]);
 
-  let response = await fetch("http://plony.hopto.org:70/items", {
+  let response = await fetch("http://plony.hopto.org:70/images", {
     method: "POST",
     body: formData,
     headers: {
@@ -62,8 +62,7 @@ async function sendToServer(dataToSend) {
       Accept: "application/json",
     },
   });
-  result = await response.json();
-
+  dataToSend.primaryImage = await response.text();
   let response = await fetch("http://plony.hopto.org:70/items", {
     headers: {
       Authorization: "Bearer " + document.cookie.replace("token=", ""),
