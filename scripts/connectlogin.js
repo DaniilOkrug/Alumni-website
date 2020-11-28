@@ -21,7 +21,7 @@ function signin() {
 signupButton.addEventListener("click", signup);
 function signup() {
   const username = signupUsername.value;
-  if (username.length < 6) {
+  if (username.length < 5) {
     alert("Длина логина должна быть больше 6 символов");
     return;
   }
