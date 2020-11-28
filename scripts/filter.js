@@ -8,7 +8,6 @@ function filter() {
         element.classList.remove("show")
         element.classList.forEach(cls => {
             if (typeArr.includes(cls)) element.classList.add("show");
-            
         });
     });
 }
@@ -63,7 +62,7 @@ function priceCheck() {
         priceArr.push("price-100-200");
         emptyPrice = false;
     }
-    if (price200Above.checked) {
+    if (price200Above) {
         priceArr.push("price-200above");
         emptyPrice = false;
     }
