@@ -5,9 +5,23 @@
 /items/{id} -> определенная вещь
 /authorize -> вернет { ok: true, message: <username> } если ты авторизован
 */
-if (!result.ok) {
-  document.body.innerHTML = `Войдите перед использованием`;
-} else {
+async function signConnect() {
+  let response = await fetch("http://plony.hopto.org:70/authorize", {
+    headers: {
+      Authorization: "Bearer " + document.cookie.replace("token=", ""),
+    },
+    method: "GET",
+  });
+  result = await response.json();
+  if (result.ok) {
+  }else{
+    loggedOff();
+  }
+}
+signConnect();
+function loggedOff() {
+  const emptyDiv = document.getElementById("ALL");
+  emptyDiv.innerHTML = "";
 }
 
 const blogHeader = document.getElementById("blogHeader");
