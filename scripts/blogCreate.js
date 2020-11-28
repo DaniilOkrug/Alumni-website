@@ -33,6 +33,19 @@ function finishCreate() {
   sendToServer(data);
 }
 async function sendToServer(dataToSend) {
+  const formData = new FormData();
+
+  formData.append("file", blogPreview.files[0]);
+
+  let response = await fetch("http://plony.hopto.org:70/posts", {
+    method: "POST",
+    body: formData,
+    headers: {
+      Authorization: "Bearer " + document.cookie.replace("token=", ""),
+      Accept: "application/json",
+    },
+  });
+  result = await response.json();
   let response = await fetch("http://plony.hopto.org:70/posts", {
     headers: {
       Authorization: "Bearer " + document.cookie.replace("token=", ""),
