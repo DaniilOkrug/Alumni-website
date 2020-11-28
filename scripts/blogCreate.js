@@ -46,7 +46,7 @@ async function sendToServer(dataToSend) {
     },
   });
   dataToSend.previewImage = await response.text();
-  response = await fetch("http://plony.hopto.org:70/posts", {
+  let response = await fetch("http://plony.hopto.org:70/posts", {
     headers: {
       Authorization: "Bearer " + document.cookie.replace("token=", ""),
       Accept: "application/json",
