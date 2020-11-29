@@ -24,7 +24,7 @@ function finishCreate() {
   };
   const formData = new FormData();
   formData.append("file", blogPreview.files[0]);
-  data.previewImage = sendToServerImage(formData);
+  data.previewImage = await sendToServerImage(formData);
 
   sendToServer(data, "http://plony.hopto.org:70/posts");
   alert("Вы успешно создали блог");
