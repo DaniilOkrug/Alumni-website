@@ -45,7 +45,11 @@ function signup() {
 }
 
 async function signupConnect(user) {
-  if (sendToServer(user, "http://plony.hopto.org:70/authorize/register").ok) {
+  let result = sendToServer(
+    user,
+    "http://plony.hopto.org:70/authorize/register"
+  );
+  if (result.ok) {
     alert("Регистрация успешна");
     location.reload();
   } else {
@@ -54,7 +58,8 @@ async function signupConnect(user) {
 }
 
 async function signinConnect(user) {
-  if (sendToServer(user, "http://plony.hopto.org:70/authorize/login").ok) {
+  let result = sendToServer(user, "http://plony.hopto.org:70/authorize/login");
+  if (result.ok) {
     document.cookie = "token=" + result.message + "; path=/";
 
     if (user.username === "admin" && user.password === "123456") {
