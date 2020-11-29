@@ -26,53 +26,17 @@ function createPosts(arrayResponse) {
       body = divPosts.body.slice(0, 81);
     }
     const date = new Date(divPosts.createdAt);
-    if (i + 1 === arrayResponse.length) {
-      const newPostElement = document.createElement("li");
-      newPostElement.className = "PostElement";
-      newPostElement.innerHTML = `
-    <div class="row mb-2">
-      <div class="col-md-6 p-0">
-      <div
-        class="post-container row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-      >
-        <div class="col d-none d-lg-block">
-          <img
-            class="img-thumbnail p-0"
-            style="min-height: 100%"
-            src="${divPosts.previewImage}"
-            alt="Image"
-          />
-        </div>
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary"
-            >Раздел или Тема</strong>
-          <h3 class="mb-0">${divPosts.title}</h3>
-          <div class="mb-1 text-muted">${date.getDate()}.${date.getMonth()}.${date.getFullYear()}</div>
-          <p class="card-text mb-auto">
-            ${body}
-          </p>
-          <a href="#" class="stretched-link mt-3">Читать</a>
-        </div>
-      </div>
-    </div>      
-    </div>    
-  </div>
-    
-          `;
-      const listRoot = document.getElementById("listOfPosts");
-      listRoot.append(newPostElement);
+    const divPosts2 = arrayResponse[i + 1];
+    let body2;
+    if (divPosts2.body.length <= 81) {
+      body2 = divPosts2.body;
     } else {
-      const divPosts2 = arrayResponse[i + 1];
-      let body2;
-      if (divPosts2.body.length <= 81) {
-        body2 = divPosts2.body;
-      } else {
-        body2 = divPosts2.body.slice(0, 81);
-      }
-      const date2 = new Date(divPosts2.createdAt);
-      const newPostElement = document.createElement("li");
-      newPostElement.className = "PostElement";
-      newPostElement.innerHTML = `
+      body2 = divPosts2.body.slice(0, 81);
+    }
+    const date2 = new Date(divPosts2.createdAt);
+    const newPostElement = document.createElement("li");
+    newPostElement.className = "PostElement";
+    newPostElement.innerHTML = `
     <div class="row mb-2">
       <div class="col-md-6 p-0">
       <div
@@ -97,37 +61,38 @@ function createPosts(arrayResponse) {
           <a href="#" class="stretched-link mt-3">Читать</a>
         </div>
       </div>
-    </div>      
-    <div class="col-md-6 p-0">
-    <div
-      class="post-container row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-    >
-      <div class="col d-none d-lg-block">
-        <img
-          class="img-thumbnail p-0"
-          style="min-height: 100%"
-          src="${divPosts2.previewImage}"
-          alt="Image"
-        />
+    </div> `;
+    if (i + 1 !== arrayResponse.length) {
+      newPostElement.innerHTML += `<div class="col-md-6 p-0">
+      <div
+        class="post-container row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+      >
+        <div class="col d-none d-lg-block">
+          <img
+            class="img-thumbnail p-0"
+            style="min-height: 100%"
+            src="${divPosts2.previewImage}"
+            alt="Image"
+          />
+        </div>
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary"
+            >Раздел или Тема</strong>
+          <h3 class="mb-0">${divPosts2.title}</h3>
+          <div class="mb-1 text-muted">${date2.getDate()}.${date2.getMonth()}.${date2.getFullYear()}</div>
+          <p class="card-text mb-auto">
+            ${body2}
+          </p>
+          <a href="#" class="stretched-link mt-3">Читать</a>
+        </div>
       </div>
-      <div class="col p-4 d-flex flex-column position-static">
-        <strong class="d-inline-block mb-2 text-primary"
-          >Раздел или Тема</strong>
-        <h3 class="mb-0">${divPosts2.title}</h3>
-        <div class="mb-1 text-muted">${date2.getDate()}.${date2.getMonth()}.${date2.getFullYear()}</div>
-        <p class="card-text mb-auto">
-          ${body2}
-        </p>
-        <a href="#" class="stretched-link mt-3">Читать</a>
-      </div>
+      </div>    
     </div>
-    </div>    
-  </div>
-    
-          `;
-      const listRoot = document.getElementById("listOfPosts");
-      listRoot.append(newPostElement);
+      
+            `;
     }
+    const listRoot = document.getElementById("listOfPosts");
+    listRoot.append(newPostElement);
   }
 }
 

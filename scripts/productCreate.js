@@ -1,22 +1,3 @@
-async function signConnect() {
-  let response = await fetch("http://plony.hopto.org:70/authorize", {
-    headers: {
-      Authorization: "Bearer " + document.cookie.replace("token=", ""),
-    },
-    method: "GET",
-  });
-  result = await response.json();
-  if (result.ok) {
-  } else {
-    loggedOff();
-  }
-}
-signConnect();
-function loggedOff() {
-  const emptyDiv = document.getElementById("ALL");
-  emptyDiv.innerHTML = "";
-}
-
 const blogHeader = document.getElementById("blogHeader");
 const blogBody = document.getElementById("blogBody");
 const blogPreview = document.getElementById("productPreview1");
@@ -46,48 +27,14 @@ function finishCreate() {
     sizes: ["S", "M"],
     tags: tagss,
   };
-
-  sendToServer(data);
-}
-
-async function sendToServer(dataToSend) {
   const formData = new FormData();
-
   formData.append("file", blogPreview.files[0]);
-
-  let response = await fetch("http://plony.hopto.org:70/images", {
-    method: "POST",
-    body: formData,
-    headers: {
-      Authorization: "Bearer " + document.cookie.replace("token=", ""),
-      Accept: "application/json",
-    },
-  });
-  dataToSend.primaryImage = await response.text();
+  dataToSend.primaryImage = sendToServerImage(formData);
 
   const formData2 = new FormData();
-
   formData.append("file", blogPreview2.files[0]);
-
-  response = await fetch("http://plony.hopto.org:70/images", {
-    method: "POST",
-    body: formData2,
-    headers: {
-      Authorization: "Bearer " + document.cookie.replace("token=", ""),
-      Accept: "application/json",
-    },
-  });
-  dataToSend.secondaryImage = await response.text();
-  response = await fetch("http://plony.hopto.org:70/items", {
-    headers: {
-      Authorization: "Bearer " + document.cookie.replace("token=", ""),
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify(dataToSend),
-  });
-  result = await response.json();
+  dataToSend.secondaryImage = sendToServerImage(formData2);
+  sendToServer(data);
   alert("Вы вынесли товар в магазин");
   location.reload();
 }
