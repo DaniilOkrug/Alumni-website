@@ -10,7 +10,6 @@ async function signConnect() {
   if (result.ok) {
     loggedIn();
   } else {
-    //loggedOff();
   }
 }
 signConnect();
@@ -42,11 +41,9 @@ logOffDiv.addEventListener("click", () => {
   });
   location.reload();
 });
-//function loggedOff() {}
 function setCookie(name, value, options = {}) {
   options = {
     path: "/",
-    // при необходимости добавьте другие значения по умолчанию
     ...options,
   };
 

@@ -45,16 +45,7 @@ function signup() {
 }
 
 async function signupConnect(user) {
-  let response = await fetch("http://plony.hopto.org:70/authorize/register", {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify(user),
-  });
-  let result = await response.json();
-  if (result.ok) {
+  if (sendToServer(user, "http://plony.hopto.org:70/authorize/register").ok) {
     alert("Регистрация успешна");
     location.reload();
   } else {
@@ -63,17 +54,7 @@ async function signupConnect(user) {
 }
 
 async function signinConnect(user) {
-  let response = await fetch("http://plony.hopto.org:70/authorize/login", {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify(user),
-  });
-  let result = await response.json();
-  console.log(result);
-  if (result.ok) {
+  if (sendToServer(user, "http://plony.hopto.org:70/authorize/login").ok) {
     document.cookie = "token=" + result.message + "; path=/";
 
     if (user.username === "admin" && user.password === "123456") {
