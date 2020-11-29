@@ -8,7 +8,9 @@ async function sendToServer(dataToSend, url) {
     method: "POST",
     body: JSON.stringify(dataToSend),
   });
-  return await response.json();
+  let result = await response.json();
+  console.log(result);
+  return result;
 }
 async function sendToServerImage(dataToSend) {
   let response = await fetch("http://plony.hopto.org:70/images", {

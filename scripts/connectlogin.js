@@ -45,10 +45,11 @@ function signup() {
 }
 
 async function signupConnect(user) {
-  let result = sendToServer(
+  let result = await sendToServer(
     user,
     "http://plony.hopto.org:70/authorize/register"
   );
+  console.log(result);
   if (result.ok) {
     alert("Регистрация успешна");
     location.reload();
@@ -58,7 +59,7 @@ async function signupConnect(user) {
 }
 
 async function signinConnect(user) {
-  let result = sendToServer(user, "http://plony.hopto.org:70/authorize/login");
+  let result = await sendToServer(user, "http://plony.hopto.org:70/authorize/login");
   if (result.ok) {
     document.cookie = "token=" + result.message + "; path=/";
 

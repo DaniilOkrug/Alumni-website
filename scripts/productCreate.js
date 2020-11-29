@@ -29,11 +29,11 @@ function finishCreate() {
   };
   const formData = new FormData();
   formData.append("file", blogPreview.files[0]);
-  dataToSend.primaryImage = sendToServerImage(formData);
+  dataToSend.primaryImage = await sendToServerImage(formData);
 
   const formData2 = new FormData();
   formData.append("file", blogPreview2.files[0]);
-  dataToSend.secondaryImage = sendToServerImage(formData2);
+  dataToSend.secondaryImage = await sendToServerImage(formData2);
   sendToServer(data);
   alert("Вы вынесли товар в магазин");
   location.reload();
